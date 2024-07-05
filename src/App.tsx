@@ -3,7 +3,6 @@ import Toolbar from './components/Toolbar/Toolbar';
 import { Link, Route, Routes } from 'react-router-dom';
 import PageContent from './containers/PageContent/PageContent';
 import EditPage from './containers/EditPage/EditPage';
-import Home from './containers/Home/Home';
 
 const App = () => {
   return (
@@ -12,7 +11,7 @@ const App = () => {
         <Toolbar />
       </header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<PageContent />} />
         <Route path="/pages/:pageName" element={<PageContent />} />
         <Route path="/admin" element={<EditPage />} />
         <Route

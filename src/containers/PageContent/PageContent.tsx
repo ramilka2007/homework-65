@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosApi from '../../axiosApi';
 import { PageContent } from '../../types';
+import Spinner from '../../components/Spinner/Spinner';
 
 const PageContent = () => {
   const { pageName } = useParams();
@@ -9,25 +10,35 @@ const PageContent = () => {
     title: '',
     content: '',
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchPage = useCallback(async () => {
-    try {
-      const { data: pageData } = await axiosApi.get<PageContent | null>(
-        `/pages/${pageName}.json`,
-      );
-      if (!pageData) {
-        setPage(null);
-      } else {
-        setPage(pageData);
+  const fetchPage = useCallback(
+    async (url) => {
+      setLoading(true);
+      try {
+        const { data: pageData } = await axiosApi.get<PageContent | null>(url);
+        if (!pageData) {
+          setPage(null);
+        } else {
+          setPage(pageData);
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-    }
-  }, [pageName]);
+    },
+    [pageName],
+  );
 
   useEffect(() => {
-    void fetchPage();
+    if (pageName !== undefined) {
+      void fetchPage(`pages/${pageName}.json`);
+    } else {
+      void fetchPage(`pages/home.json`);
+    }
   }, [fetchPage]);
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     page && (
       <div>
         <h1>{page.title}</h1>

@@ -4,5 +4,5 @@ export interface PageContent {
 }
 
 export interface EditPage extends PageContent {
-  category?: string;
+  page: string;
 }
