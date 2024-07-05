@@ -15,6 +15,7 @@ const EditPage = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const fetchEditPage = useCallback(async () => {
+    setLoading(true);
     const {data: page} = await axiosApi.get<PageContent>(`pages/${editPage.page}.json`);
     try {
       if (page !== null) {
@@ -24,8 +25,11 @@ const EditPage = () => {
           content: page.content,
         });
       }
+    } catch(err) {
+      console.error('Error happened');
+      throw err;
     } finally {
-
+      setLoading(false);
     }
   }, [editPage.page]);
 

@@ -22,6 +22,9 @@ const PageContent = () => {
         } else {
           setPage(pageData);
         }
+      } catch (err) {
+        console.error('Error happened');
+        throw err;
       } finally {
         setLoading(false);
       }
