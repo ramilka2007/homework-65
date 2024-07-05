@@ -30,8 +30,10 @@ const PageContent = () => {
   return (
     page && (
       <div>
-        <h4>{page.title}</h4>
-        <p>{page.content}</p>
+        <h1>{page.title}</h1>
+        <p>
+          <strong>{page.content}</strong>
+        </p>
       </div>
     )
   );

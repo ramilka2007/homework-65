@@ -10,24 +10,28 @@ const Toolbar = () => {
         </NavLink>
 
         <div className="links d-flex flex-row align-items-center justify-content-evenly">
-          <NavLink className="first-link nav-link text-white" to="/home">
+          <NavLink className="first-link nav-link text-white" to="/">
             Home
           </NavLink>
           <hr />
-          <NavLink className="nav-link text-white" to="/about">
+          <NavLink className="nav-link text-white" to="/pages/about">
             About
           </NavLink>
           <hr />
-          <NavLink className="nav-link text-white" to="/contacts">
+          <NavLink className="nav-link text-white" to="/pages/contacts">
             Contacts
           </NavLink>
           <hr />
-          <NavLink className="nav-link text-white" to="/projects">
+          <NavLink className="nav-link text-white" to="/pages/projects">
             Projects
           </NavLink>
           <hr />
-          <NavLink className="nav-link text-white" to="/partnership">
+          <NavLink className="nav-link text-white" to="/pages/partnership">
             Partnership
+          </NavLink>
+          <hr />
+          <NavLink className="nav-link text-white" to="/pages/reviews">
+            Reviews
           </NavLink>
           <hr />
           <NavLink className="nav-link text-white" to="/admin">
