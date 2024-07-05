@@ -14,28 +14,24 @@ const EditPage = () => {
   });
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const fetchEditPost = useCallback(async () => {
-    setLoading(true);
-    const { data: page } = await axiosApi.get<PageContent | null>(
-      `pages/${editPage.page}.json`,
-    );
+  const fetchEditPage = useCallback(async () => {
+    const {data: page} = await axiosApi.get<PageContent>(`pages/${editPage.page}.json`);
     try {
       if (page !== null) {
         setEditPage({
-          ...page,
+          page: editPage.page,
           title: page.title,
           content: page.content,
-          category: editPage.page,
         });
       }
     } finally {
-      setLoading(false);
+
     }
   }, [editPage.page]);
 
   useEffect(() => {
-    void fetchEditPost();
-  }, [fetchEditPost]);
+    void fetchEditPage();
+  }, [fetchEditPage]);
 
   const onFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
